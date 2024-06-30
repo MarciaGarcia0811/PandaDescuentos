@@ -30,8 +30,4 @@ public class Descuento {
     @JoinColumn(name = "banco_id", nullable = false)
     private Banco banco;
 
-    @ManyToOne
-    @JoinColumn(name = "categoria_id", nullable = false)
-    private Categoria categoria;
-
 }
