@@ -14,22 +14,22 @@ public class UsuarioService {
     private UsuarioRepository usuarioRepository;
 
     @Transactional
-    public List<Usuario> getAllUsuarios() {
+    public List<Usuario> findAll() {
         return usuarioRepository.findAll();
     }
 
     @Transactional
-    public Usuario getUsuarioById(long id) {
+    public Usuario findById(long id) {
         return usuarioRepository.findById(id).orElse(null);
     }
 
     @Transactional
-    public Usuario saveUsuario(Usuario usuario) {
+    public Usuario save(Usuario usuario) {
         return usuarioRepository.save(usuario);
     }
 
     @Transactional
-    public void deleteUsuario(long id) {
+    public void deleteById(long id) {
         usuarioRepository.deleteById(id);
     }
 }

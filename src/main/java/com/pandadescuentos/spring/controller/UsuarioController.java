@@ -12,7 +12,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/api/usuarios")
 public class UsuarioController {
 
     @Autowired
@@ -20,13 +20,13 @@ public class UsuarioController {
 
     @GetMapping
     public ResponseEntity<List<Usuario>> findAll() {
-        List<Usuario> usuarios = usuarioService.getAllUsuarios();
+        List<Usuario> usuarios = usuarioService.findAll();
         return new ResponseEntity<>(usuarios, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Usuario> obtenerUsuarioPorId(@PathVariable long id) {
-        Usuario usuario = usuarioService.getUsuarioById(id);
+    public ResponseEntity<Usuario> getUsuarioById(@PathVariable long id) {
+        Usuario usuario = usuarioService.findById(id);
         if (usuario != null) {
             return new ResponseEntity<>(usuario, HttpStatus.OK);
         } else {
@@ -34,18 +34,18 @@ public class UsuarioController {
         }
     }
 
-    @PostMapping("/crear")
-    public ResponseEntity<Usuario> crearUsuario(@Valid @RequestBody Usuario usuario) {
-        Usuario nuevoUsuario = usuarioService.saveUsuario(usuario);
+    @PostMapping
+    public ResponseEntity<Usuario> createUsuario(@RequestBody Usuario usuario) {
+        Usuario nuevoUsuario = usuarioService.save(usuario);
         return new ResponseEntity<>(nuevoUsuario, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Usuario> updateUsuario(@PathVariable long id, @Valid @RequestBody Usuario usuario) {
-        Usuario usuarioExistente = usuarioService.getUsuarioById(id);
+    public ResponseEntity<Usuario> updateUsuario(@PathVariable long id, @RequestBody Usuario usuario) {
+        Usuario usuarioExistente = usuarioService.findById(id);
         if (usuarioExistente != null) {
             usuario.setId(id);
-            Usuario usuarioActualizado = usuarioService.saveUsuario(usuario);
+            Usuario usuarioActualizado = usuarioService.save(usuario);
             return new ResponseEntity<>(usuarioActualizado, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -54,9 +54,9 @@ public class UsuarioController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUsuario(@PathVariable long id) {
-        Usuario usuarioExistente = usuarioService.getUsuarioById(id);
+        Usuario usuarioExistente = usuarioService.findById(id);
         if (usuarioExistente != null) {
-            usuarioService.deleteUsuario(id);
+            usuarioService.deleteById(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

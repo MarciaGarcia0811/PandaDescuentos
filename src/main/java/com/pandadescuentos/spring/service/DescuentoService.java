@@ -11,11 +11,14 @@ import java.util.List;
 @Service
 public class DescuentoService {
 
-    @Autowired
-    private DescuentoRepository descuentoRepository;
+    private final DescuentoRepository descuentoRepository;
 
-    public List<Descuento> obtenerTodosLosDescuentos(){
-        return  descuentoRepository.findAll();
+    @Autowired
+    public DescuentoService(DescuentoRepository descuentoRepository) {
+        this.descuentoRepository = descuentoRepository;
     }
 
+    public List<Descuento> findAllDescuentos() {
+        return descuentoRepository.findAll();
+    }
 }
