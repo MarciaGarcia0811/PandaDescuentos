@@ -15,7 +15,7 @@ import java.util.List;
 
 @Import(WebConfig.class)
 @RestController
-@RequestMapping("/bancos")
+@RequestMapping("/api/bancos")
 public class BancoController {
 
     @Autowired
@@ -23,6 +23,6 @@ public class BancoController {
 
     @GetMapping
     public List<Banco> obtenerBancos() {
-        return bancoService.obtenerTodosLosBancos();
+        return bancoService.findAllBancos();
     }
 }
