@@ -13,23 +13,22 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    @Transactional
-    public List<Usuario> getAllUsuarios() {
+    public List<Usuario> obtenerTodosLosUsuarios() {
         return usuarioRepository.findAll();
     }
 
     @Transactional
-    public Usuario getUsuarioById(long id) {
+    public Usuario obtenerUsuarioPorId(Long id) {
         return usuarioRepository.findById(id).orElse(null);
     }
 
     @Transactional
-    public Usuario saveUsuario(Usuario usuario) {
+    public Usuario guardarUsuario(Usuario usuario) {
         return usuarioRepository.save(usuario);
     }
 
     @Transactional
-    public void deleteUsuario(long id) {
+    public void eliminarUsuario(Long id) {
         usuarioRepository.deleteById(id);
     }
 }

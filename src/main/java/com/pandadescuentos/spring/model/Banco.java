@@ -10,7 +10,7 @@ public class Banco {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_banco")
+    @Column(name = "id")
     private Long idBanco;
 
     @Column(nullable = false, unique = true)

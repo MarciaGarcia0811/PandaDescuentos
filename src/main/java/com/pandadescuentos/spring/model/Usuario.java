@@ -14,16 +14,22 @@ import java.util.Date;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    @Column
+    @Column( name = "id")
     private long id;
-    @Column
-    private String nombre;
-    @Column
+
+    @Column(name = "nombre_usuario")
+    private String nombreUsuario;
+
+    @Column(name = "correo")
     private String correo;
-    @Column
+
+    @Column(name = "contrasena")
     private String contrasena;
-    @Column
-    private Date fechaRegistro;
+
+    @Column(name = "telefono")
+    private String telefono;
+
+    @Column(name = "rut")
+    private String rut;
 
 }
