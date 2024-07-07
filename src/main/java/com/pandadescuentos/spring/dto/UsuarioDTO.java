@@ -24,6 +24,4 @@ public class UsuarioDTO {
     @NotEmpty(message = "La contraseña no puede estar vacía")
     private String contrasena;
 
-
-
 }

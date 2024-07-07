@@ -29,30 +29,27 @@
 	<properties>
 		<java.version>17</java.version>
 	</properties>
+  
 	<dependencies>
 		<!-- Spring Boot Starter Web para manejar solicitudes HTTP -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<!-- Spring Boot Starter Data JPA para trabajar con bases de datos -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
-
 		<!-- Spring Boot Starter Security para la seguridad de la aplicación -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-
 		<!-- Lombok para generar automáticamente getters, setters, constructores, etc. -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -60,22 +57,18 @@
 			<version>1.18.32</version>
 			<scope>provided</scope>
 		</dependency>
-
 		<!-- MySQL Connector/J para la base de datos MySQL -->
 		<dependency>
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-
-
 		<!-- Spring Security para pruebas unitarias -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 		<!-- Spring Boot DevTools para desarrollo -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -83,28 +76,29 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
-
 		<!-- Spring Boot Starter Test para pruebas unitarias -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 		<!-- API de validación para validaciones en el modelo -->
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
 			<version>2.0.1.Final</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+			<version>3.2.4</version>
+		</dependency>
 		<!-- JWT (JSON Web Token) para la autenticación -->
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-api</artifactId>
 			<version>0.11.5</version>
 		</dependency>
-
 	</dependencies>
 
 	<build>
@@ -115,5 +109,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
