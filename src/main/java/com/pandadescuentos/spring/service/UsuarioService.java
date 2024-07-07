@@ -5,6 +5,7 @@ import com.pandadescuentos.spring.model.Usuario;
 import com.pandadescuentos.spring.repository.UsuarioRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,8 +15,19 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public List<Usuario> obtenerTodosLosUsuarios() {
         return usuarioRepository.findAll();
+    }
+
+    public Usuario buscarPorCorreo(String correo) {
+        return usuarioRepository.findByCorreo(correo);
+    }
+
+    public Usuario buscarPorNombre(String nombre) {
+        return usuarioRepository.findByNombre(nombre);
     }
 
     @Transactional
@@ -25,6 +37,7 @@ public class UsuarioService {
 
     @Transactional
     public Usuario guardarUsuario(Usuario usuario) {
+        String encryptedPassword = passwordEncoder.encode(usuario.getContrasena());
         return usuarioRepository.save(usuario);
     }
 
@@ -37,12 +50,22 @@ public class UsuarioService {
     public UsuarioDTO saveUsuario(UsuarioDTO nuevoUsuario) {
 
         Usuario usuarioParaGuardar = Usuario.builder()
-                .nombreUsuario(nuevoUsuario.getNombreUsuario())
-                .correo(nuevoUsuario.getCorreoUsuario())
+                .nombre(nuevoUsuario.getNombre())
+                .correo(nuevoUsuario.getCorreo())
                 .contrasena(nuevoUsuario.getContrasena())
                 .build();
 
         usuarioRepository.save(usuarioParaGuardar);
         return nuevoUsuario;
     }
+
+    public void registrarUsuario(String nombre, String correo, String contrasena) {
+        Usuario usuario = new Usuario();
+        usuario.setNombre(nombre);
+        usuario.setCorreo(correo);
+        usuario.setContrasena(passwordEncoder.encode(contrasena)); // Encriptar la contraseña antes de guardarla
+        usuarioRepository.save(usuario);
+    }
+
+
 }
