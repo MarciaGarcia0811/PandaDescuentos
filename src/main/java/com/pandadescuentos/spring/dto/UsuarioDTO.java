@@ -25,6 +25,4 @@ public class UsuarioDTO {
     @NotBlank
     private String contrasena;
 
-
-
 }
